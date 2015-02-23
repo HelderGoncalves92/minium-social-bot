@@ -71,7 +71,9 @@ var twi_replyMsg = function(){
         twitter.replyMsg(reply);
       }else{
         var btn = $('#dm_dialog-dialog').find("button.js-close").click();
+        return 0;
     }
+    return 1;
 }
 
 //Select a rand element of the array passed || The element isn't an array, so .length doesn't work. Therefore you need to pass 'num'
@@ -85,20 +87,6 @@ var selectRand = function(array,num){
     return array.first();
 }
  
-var twi_doPost = function(){
-  var home = "https://twitter.com/";
-  var i = parseInt(Math.random() *2 );
-  i=2;
-  
-  
-   if(i==0){
-    
-  }
-  else if(i==2){
-  
-    
-  }
-}
 
 var twi_replyPost = function(){
   browser.get("https://twitter.com/mentions");
@@ -129,7 +117,7 @@ var goo_replyMsg = function(){
   browser.get(googleMail);
   
   var unread = $(".Cp").find(".zA.zE").first().checkForExistence();
-  if(!unread) return;
+  if(!unread) return 0;
   $(".Cp").find(".zA.zE").first().click()//open unread
   var msg = $(".G3.G2").find(".adn.ads").find(".adP.adO").find(".a3s").find("[dir='ltr']").first().html(); //Last message - Contend - Without Extra
   msg = msg.match(/[^<]+/)[0]; //Just work in simple messages. The message sent to bot is up to first '<'
@@ -139,6 +127,7 @@ var goo_replyMsg = function(){
   $(".G3.G2").find(".gA.gt").click();//Open editable
   $(".G3.G2").find(".editable").fill(reply); //Fill text
   $(".aDh").find(".J-J5-Ji.T-I").click();//Send Mail
+  return 1;
 }
   
 var getBirthday = function(){
@@ -266,6 +255,20 @@ var topMusic = function(){
   $(".timeline-tweet-box").find('.js-tweet-btn').click();
 }
 
+var twi_doPost = function(){
+  
+  var i = parseInt(Math.random() * 6);
+  
+  if(i==0) getBirthday();
+  else if(i==1) getWeather("Lisboa");
+  else if(i==2) getToDo();
+  else if(i==3) pplPost();
+  else if(i==4) publicoPost();
+  else if(i==5) topMusic();
+    
+}
+
+/**********************************************************/
 
 //Init CleverBot
 var botbrowser = minium.newBrowser({
@@ -296,15 +299,28 @@ twitter.login(credentials);
 
 /********************** Now do what you want *****************************/
   
+  //Example - While's not tested
+  while(true){
+    twi_replyPost(); //Reply one tweet
+
+    while(twi_replyMsg());  //Check every messages unread
+    while(goo_replyMsg());  //Check every mails unread
+
+    twi_doPost(); //Do a random post
+    $(":root").waitTime(3600, timeUnits.SECONDS); //Check every hour
+  }
+
+
   twi_replyPost();
   twi_replyMsg();
   twi_doPost();
-  
+
   goo_replyMsg();
-  
+
+
+  //This features are in Twi_doPost()
   getBirthday();
   getWeather("Lisboa");
-  
   getToDo();
   pplPost();
   publicoPost();
