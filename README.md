@@ -14,9 +14,19 @@ Examples of what you can program Minium to do:
  * Pass Turing Test
  * In the best case scenario you can drive a "Social Media Manager" out of work !
 
-**Submission:** Submit your code, some screenshots or video of Minium in action is also a plus to the email minium@vilt-group.com with SEIUM as the subject. Don't forget to adde your details: name, student number and contact.
 
-**Reward:** The reward for the most creative solution is a **Google Chromecast !**
+In this challenge, I added to **Minium** the following features:
+	
+	* Check and reply to personal mails in Gmail
+	* Check and reply to personal messages in Twitter
+	* Check and reply if exists new tweets
+	* Do multiple posts in Twitter like:
+		* A music of Top 25 of the day
+		* A celebraty birthday today
+		* A news of pplware or publico
+		* The weather of a random city
+		* What I have to do in my Google Calendar
+
 
 ## Getting Started
 
