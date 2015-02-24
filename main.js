@@ -173,7 +173,7 @@ var getWeather = function(city){
 
 var getToDo = function(){
   browser.get(googleCalendar);
-  var events = $("#tgCol0").find(".chip").text().match(/[a-zA-ZÀ-ú ]{2,}/g);
+  var events = $("#tgCol0").find(".chip").text().match(/[a-zA-ZÀ-ú ]{2,}/g);// May not working here.
   var num = events.length;
   
   browser.get(twitterPage);
@@ -250,7 +250,7 @@ var topMusic = function(){
   //2 minutes listening some music. This bot is a music lover
   $(":root").waitTime(10, timeUnits.SECONDS); 
   
-  browser.get(home);
+  browser.get(twitterPage);
   $("#tweet-box-mini-home-profile").fill(title + "\n" + link);
   $(".timeline-tweet-box").find('.js-tweet-btn').click();
 }
@@ -294,7 +294,7 @@ var tradbrowser = minium.newBrowser({
 
 
 var twitter = new Twitter(browser);
-twitter.login(credentials);
+twitter.login(twi_credentials);
 
 
 /********************** Now do what you want *****************************/
